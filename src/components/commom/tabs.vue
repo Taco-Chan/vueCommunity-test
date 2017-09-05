@@ -15,10 +15,11 @@
             <section class="list">
                 <!-- <img @click="user(index)" :src="item.author.avatar_url" alt=""> -->
                 <router-link
-                :to="{path:'/vuecommunitytest/user',query:{user:item.author.loginname}}"
+                :to="{path:'/user',query:{user:item.author.loginname}}"
                 :src="item.author.avatar_url"
                 tag="img"
-                alt="user"></router-link>
+                alt="user">
+                </router-link>
                 <router-link :to="{path:'/vuecommunitytest/content',query:{id:item.id}}" tag="div" class="content">
                     <div class="list_title">
                         <span v-if="item.top">置顶</span>
@@ -80,7 +81,7 @@ export default {
   },
   methods: {
     getScroll() {
-      this.scrollValue = this.$ref.myElement.scrollTop
+      this.scrollValue = this.$refs.myElement.scrollTop
       console.log(this.scrollValue)
     },
     loadMore() {
@@ -98,7 +99,7 @@ export default {
               that.nomore = true
               return
             }
-            that.item = [...that.items, ...arr]
+            that.items = [...that.items, ...arr]
             arr = []
           })
           this.loading = false
@@ -128,74 +129,80 @@ export default {
 
 <style scoped>
 .main {
-    overflow: auto;
-    border: 1px solid #d9d9d9;
+  overflow: auto;
+  border: 1px solid #d9d9d9;
 }
-.tab{
-  margin:4rem 0 3rem 0;
+
+.tab {
+  margin: 4rem 0 3rem 0;
 }
+
 .tab .tabs {
-    margin-top: 5rem;
-    height: 4rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid rgba(255,255,255,.1);
-    display: flex;
-    justify-content: space-around;
+  margin-top: 5rem;
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  display: flex;
+  justify-content: space-around;
 }
-.mu-tab-link,.mu-tab-active{
-    white-space: nowrap;
+
+.mu-tab-link,
+.mu-tab-active {
+  white-space: nowrap;
 }
-.mu-list{
-    padding: 0;
+
+.mu-list {
+  padding: 0;
 }
+
 .list {
-    display: flex;
-    border-bottom: 1px solid #999;
-    padding: 1rem;
+  display: flex;
+  border-bottom: 1px solid #999;
+  padding: 1rem;
 }
 
 .list>img {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    margin-right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
 }
 
 .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .list_title {
-    /*display: flex;*/
+  /*display: flex;*/
 }
 
 .list_title>span {
-    /*white-space:nowrap;*/
-    background-color: #009688;
-    color: #fff;
-    padding: 0.2rem;
-    border-radius: 0.2rem;
+  /*white-space:nowrap;*/
+  background-color: #009688;
+  color: #fff;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
 }
 
 .list_title>h3 {
-    display: inline;
-    font-weight: 700;
+  display: inline;
+  font-weight: 700;
 }
 
 .timer {
-    display: flex;
-    justify-content: space-between;
-    color: #999;
+  display: flex;
+  justify-content: space-between;
+  color: #999;
 }
 
 .nomore {
-    text-align: center;
-    padding: 1rem 0;
+  text-align: center;
+  padding: 1rem 0;
 }
 </style>

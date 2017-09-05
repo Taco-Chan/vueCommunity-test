@@ -1,10 +1,10 @@
 <template>
 <mu-paper class="bottom_nav">
   <mu-bottom-nav :value="bottomNav" @change="handleChange">
-    <mu-bottom-nav-item value="首页" title="首页" icon="home"/>
-    <mu-bottom-nav-item value="发布" title="发布" icon="subject"/>
-    <mu-bottom-nav-item value="消息" title="消息" icon="message"/>
-    <mu-bottom-nav-item value="我的" title="我的" icon="person"/>
+    <mu-bottom-nav-item to="/" value="首页" title="首页" icon="home"/>
+    <mu-bottom-nav-item to="/publish" value="发布" title="发布" icon="subject"/>
+    <mu-bottom-nav-item to="/message" value="消息" title="消息" icon="message"/>
+    <mu-bottom-nav-item :to="person_path" value="我的" title="我的" icon="person"/>
   </mu-bottom-nav>
 </mu-paper>
 </template>
@@ -13,13 +13,43 @@
 export default {
   data () {
     return {
-      bottomNav: 'recents'
+      bottomNav: '首页',
+      person_path:'/login'
     }
+  },
+  watch:{
+    '$router':'fetchData'
+  },
+  created() {
+      this.fetchData()
   },
   methods: {
     handleChange (val) {
       this.bottomNav = val
+    },
+    fetchData(){
+      // 获取token数据
+      let accesstoken = localStorage.getItem("accesstoken")
+      //判断是否有accesstoken 有得话就到个人中心页，反之到登录页
+      if(accesstoken){
+        this.person_path='/personal'
+      }else{
+        this.person_path='/login'
+      }
+      if (this.$route.path === '/') {
+          this.bottomNav = '首页'
+      }
+      if (this.$route.path === '/publish') {
+          this.bottomNav = '发布'
+      }
+      if (this.$route.path === '/message') {
+          this.bottomNav = '消息'
+      }
+      if (this.$route.path === '/login' || this.$route.path === '/personal') {
+          this.bottomNav = '我的'
+      }
     }
+
   }
 }
 </script>
