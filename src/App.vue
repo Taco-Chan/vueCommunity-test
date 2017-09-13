@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+<div id="app">
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -12,9 +12,10 @@ export default {
 </script>
 
 <style>
-html{
+html {
   font-size: 16px;
 }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,15 +26,15 @@ html{
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
+  width: 2px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,.1);
+  background: rgba(0, 0, 0, .1);
 }
 </style>
